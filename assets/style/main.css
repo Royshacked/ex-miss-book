@@ -8,3 +8,7 @@
 @import "base/layout.css";
 
 /* Components */
+@import "RootCmp.css";
+@import "cmps/HomePage.css";
+@import "cmps/AboutUs.css";
+@import "cmps/BookIndex.css";

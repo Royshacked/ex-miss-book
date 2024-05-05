@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* border-block: 1px solid black; */
+    padding: 1em;
+}
+
+header h1 {
+    margin-inline-end: auto;
+}
+
+header nav {
+    display: flex;
+    gap: 1em;
+
+    padding: 1em;
+}
+
+header nav a {
+    padding: 0.5em;
+}
+
+header nav a:not(:last-child) {
+    border-inline-end: 1px solid black;
+}
