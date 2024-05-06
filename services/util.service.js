@@ -1,7 +1,7 @@
 export const utilService = {
     loadFromStorage,
     saveToStorage,
-    // makeId,
+    makeId,
     makeLorem,
     getRandomIntInclusive,
     getDayName,
@@ -9,16 +9,16 @@ export const utilService = {
     animateCSS
 }
 
-// function makeId(length = 6) {
-//     var txt = ''
-//     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+function makeId(length = 6) {
+    var txt = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
-//     for (var i = 0; i < length; i++) {
-//         txt += possible.charAt(Math.floor(Math.random() * possible.length))
-//     }
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
 
-//     return txt
-// }
+    return txt
+}
 
 function makeLorem(size = 100) {
     const words = ['guent', 'between here and gone', 'magic lantern', 'its just a dog', 'unboared', 'book title', 'the sith empire will rise again',

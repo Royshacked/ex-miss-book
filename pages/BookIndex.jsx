@@ -11,10 +11,15 @@ export function BookIndex() {
             .then(books => setBooks(books))
     }, [])
 
+    function removeBook(bookId) {
+        bookService.remove(bookId)
+            .then(() => setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId)))
+    }
+
     return <section className="book-index">
         <h2>BookIndex</h2>
         <button>Add Book</button>
 
-        <BookList books={books} />
+        <BookList books={books} onRemove={removeBook} />
     </section>
 }

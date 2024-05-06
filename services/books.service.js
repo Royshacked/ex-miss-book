@@ -52,7 +52,7 @@ function _createBooks() {
 
 function _createBook() {
     const book = {
-        id: storageService.makeId(),
+        id: utilService.makeId(5),
         title: utilService.makeLorem(1),
         listPrice: {
             amount: utilService.getRandomIntInclusive(1, 999),
