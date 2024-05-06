@@ -11,7 +11,7 @@ export const bookService = {
 
 }
 
-console.log(_createBooks())
+_createBooks()
 
 
 function query() {

@@ -9,6 +9,7 @@
 
 /* Components */
 @import "RootCmp.css";
-@import "cmps/HomePage.css";
-@import "cmps/AboutUs.css";
-@import "cmps/BookIndex.css";
+@import "pages/HomePage.css";
+@import "pages/AboutUs.css";
+@import "pages/BookIndex.css";
+@import "cmps/BookList.css";
