@@ -1,7 +1,26 @@
 .book-details {
+    position: relative;
+
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    padding: 1em;
+
+    padding: 1.2em;
     border: 1px solid black;
+}
+
+.book-details h2,
+h3 {
+    margin-block-end: 1em;
+}
+
+.book-details img {
+    max-width: 30%;
+}
+
+.book-details button {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-color: transparent;
 }
