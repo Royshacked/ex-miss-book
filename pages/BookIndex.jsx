@@ -28,7 +28,7 @@ export function BookIndex() {
         setFilterBy(newFilter)
     }
 
-    return <section className="book-index">
+    return <section className="book-index full">
         <header>
             <h2>BookIndex</h2>
             <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />

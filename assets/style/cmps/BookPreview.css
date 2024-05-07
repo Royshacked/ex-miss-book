@@ -4,3 +4,9 @@
 
     gap: 1em;
 }
+
+.book-preview img {
+    max-width: 50%;
+
+    cursor: pointer;
+}

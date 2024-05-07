@@ -5,7 +5,7 @@ export function BookList({ books, onRemove, onSelect }) {
         <ul>
             {books.map(book =>
                 <li key={book.id}>
-                    <BookPreview book={book} />
+                    <BookPreview book={book} onSelect={onSelect} />
                     <div className="buttons">
                         <button onClick={() => onRemove(book.id)}>Remove</button>
                         <button onClick={() => onSelect(book)}>Select</button>

@@ -19,7 +19,9 @@ export function BookDetails({ book, onClose }) {
             <p>pageCount: {pageCount}</p>
             <p>categories: {book.categories}</p>
             <p>language: {book.language}</p>
-            <p className={(listPrice.amount > 150 && 'red') || (listPrice.amount < 20 && 'green') || ('')}>Price: <span>{listPrice.amount} {listPrice.currencyCode}</span></p>
+            <p>Price:
+                <span className={(listPrice.amount > 150 && 'red') || (listPrice.amount < 100 && 'green') || ('')}> {listPrice.amount} {listPrice.currencyCode}</span>
+            </p>
         </article>
 
         <img src={book.thumbnail} alt="" />

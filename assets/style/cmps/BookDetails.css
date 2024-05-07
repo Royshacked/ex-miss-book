@@ -8,6 +8,27 @@
     border: 1px solid black;
 }
 
+.book-details-header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    padding: 1em;
+}
+
+.book-details-header h2 {
+    margin-inline-end: auto;
+}
+
+.book-details-header p {
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 0.4em;
+
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
 .book-details h2,
 h3 {
     margin-block-end: 1em;
@@ -23,4 +44,14 @@ h3 {
     right: 0;
 
     background-color: transparent;
+}
+
+.red {
+    color: red;
+    font-weight: bold;
+}
+
+.green {
+    color: green;
+    font-weight: bold;
 }
