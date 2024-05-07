@@ -70,20 +70,6 @@ function getDefaultFilter(filterBy = { txt: '', price: 0 }) {
 
 // Private functions
 
-// function _createBooks() {
-//     let books = utilService.loadFromStorage(BOOK_KEY)
-
-//     if (!books || !books.length) {
-//         books = []
-
-//         for (let i = 0; i < 3; i++) {
-//             books.push(_createBook())
-//         }
-//         utilService.saveToStorage(BOOK_KEY, books)
-//     }
-//     return books
-// }
-
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
 
