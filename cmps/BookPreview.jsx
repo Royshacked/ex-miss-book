@@ -4,4 +4,5 @@ export function BookPreview({ book }) {
         <img src={book.thumbnail} alt="" />
         <p>Price: <span>{book.listPrice.amount} {book.listPrice.currencyCode}</span></p>
     </article>
+
 }
