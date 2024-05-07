@@ -3,7 +3,7 @@ header {
     align-items: center;
     justify-content: center;
 
-    /* border-block: 1px solid black; */
+    margin-block-end: 1em;
     padding: 1em;
 }
 
@@ -20,8 +20,12 @@ header nav {
 
 header nav a {
     padding: 0.5em;
+    border-inline-end: 1px solid black;
 }
 
-header nav a:not(:last-child) {
-    border-inline-end: 1px solid black;
+header nav a:hover {
+    border-inline-end: 1px solid rgb(130, 209, 12);
+    /* border-block-end: 1px solid rgb(130, 209, 12); */
+
+    color: rgb(130, 209, 12);
 }

@@ -29,9 +29,11 @@ export function BookIndex() {
     }
 
     return <section className="book-index">
-        <h2>BookIndex</h2>
-        <button>Add Book</button>
-        <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />
+        <header>
+            <h2>BookIndex</h2>
+            <BookFilter filterBy={filterBy} onFilter={onSetFilterBy} />
+            <button>Add Book</button>
+        </header>
 
         {!selectedBook && <BookList books={books} onRemove={removeBook} onSelect={selectBook} />}
         {selectedBook && <BookDetails book={selectedBook} onClose={() => setSelectedBook(null)} />}

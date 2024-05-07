@@ -1,0 +1,18 @@
+.book-index header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: lightgray;
+}
+
+.book-index button {
+    border: 0;
+    padding: 0.5em;
+
+    background-color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}

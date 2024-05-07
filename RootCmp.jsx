@@ -7,7 +7,7 @@ const { useState } = React
 export function RootCmp() {
     const [route, setRoute] = useState('bookindex')
     return (
-        <main className="content-grid">
+        <React.Fragment>
             <header className="full">
                 <h1>Miss Books</h1>
                 <nav>
@@ -17,9 +17,11 @@ export function RootCmp() {
                 </nav>
             </header>
 
-            {route === 'homepage' && <HomePage />}
-            {route === 'aboutus' && <AboutUs />}
-            {route === 'bookindex' && <BookIndex />}
-        </main>
+            <main className="content-grid">
+                {route === 'homepage' && <HomePage />}
+                {route === 'aboutus' && <AboutUs />}
+                {route === 'bookindex' && <BookIndex />}
+            </main>
+        </React.Fragment>
     )
 }

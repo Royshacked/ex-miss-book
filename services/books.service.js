@@ -1,6 +1,26 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 
+const books = [
+    {
+        id: "OXeMG8wNskc",
+        title: "metus hendrerit",
+        subtitle: "mi est eros dapibus himenaeos",
+        authors: ["Barbara Cartland"],
+        publishedDate: 1999,
+        description: "placerat nisi sodales suscipit tellus",
+        pageCount: 713,
+        categories: ["Computers", "Hack"],
+        thumbnail: "http://ca.org/books-photos/20.jpg",
+        language: "en",
+        listPrice: {
+            amount: 109,
+            currencyCode: "EUR",
+            isOnSale: false,
+        }
+    }
+]
+
 const BOOK_KEY = 'bookDb'
 
 export const bookService = {
@@ -12,7 +32,6 @@ export const bookService = {
 }
 
 _createBooks()
-
 
 function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)

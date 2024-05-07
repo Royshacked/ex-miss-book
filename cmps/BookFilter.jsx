@@ -16,7 +16,7 @@ export function BookFilter({ filterBy, onFilter }) {
     }
 
     return <section className="book-filter">
-        <input onChange={handleChange} type="text" name="txt" placeholder="Book title..." />
-        <input onChange={handleChange} type="number" name="price" placeholder="Book price..." />
+        <input onChange={handleChange} value={filterByToEdit.txt} type="text" name="txt" placeholder="Book title..." />
+        <input onChange={handleChange} value={filterByToEdit.price} type="number" name="price" placeholder="Book price..." />
     </section>
 }
