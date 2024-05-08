@@ -1,0 +1,7 @@
+.book-filter input {
+    width: 20vw;
+}
+
+.book-filter input:first-child {
+    margin-inline-end: 10px;
+}

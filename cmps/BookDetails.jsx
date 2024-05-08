@@ -1,3 +1,5 @@
+import { LongTxt } from "./LongTxt.jsx"
+
 export function BookDetails({ book, onClose }) {
     const { pageCount, publishedDate, listPrice } = book
     const now = new Date().getFullYear()
@@ -15,7 +17,8 @@ export function BookDetails({ book, onClose }) {
 
             <p>Author: {book.authors}</p>
             <p>publishedDate: {publishedDate}</p>
-            <p>description: {book.description}</p>
+            {/* <p>description: {book.description}</p> */}
+            <LongTxt txt={book.description} length={100} />
             <p>pageCount: {pageCount}</p>
             <p>categories: {book.categories}</p>
             <p>language: {book.language}</p>
