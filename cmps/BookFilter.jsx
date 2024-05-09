@@ -16,11 +16,10 @@ export function BookFilter({ filterBy, onFilter, resetFilter }) {
     }
 
     function handleChange({ target }) {
-        const { type } = target
+        const { type, name } = target
         const value = (type === 'number') ? +target.value : target.value
 
-        setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [selectFilterType]: value }))
-
+        setFilterByToEdit(prevFilterBy => ({ ...prevFilterBy, [name]: value }))
     }
 
     return <section className="book-filter">
@@ -32,7 +31,7 @@ export function BookFilter({ filterBy, onFilter, resetFilter }) {
 
         <span>Price</span>
 
-        <input onChange={handleChange} value={filterByToEdit[selectFilterType]} type="text" name="title" placeholder={`By ${selectFilterType}...`} />
+        <input onChange={handleChange} value={filterByToEdit[selectFilterType]} type="text" name={selectFilterType} placeholder={`By ${selectFilterType}...`} />
         <input onChange={handleChange} value={filterByToEdit.price} type="number" name="price" placeholder="By price..." />
     </section>
 }
