@@ -14,7 +14,7 @@ export function LongTxt({ txt, length }) {
         setIsTxtLong(prevIsReadMore => prevIsReadMore = !prevIsReadMore)
     }
 
-    const read = isTxtLong ? '...Read less' : '...Read more'
+    const readTxt = isTxtLong ? '...Read less' : '...Read more'
 
-    return <p className="long-txt">{modifiedTxt}<span onClick={toggleTxt}> {read}</span></p>
+    return <p className="long-txt">{modifiedTxt}<span onClick={toggleTxt}> {readTxt}</span></p>
 }

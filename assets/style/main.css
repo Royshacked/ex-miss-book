@@ -12,8 +12,10 @@
 @import "pages/HomePage.css";
 @import "pages/AboutUs.css";
 @import "pages/BookIndex.css";
+@import "pages/BookDetails.css";
+@import "cmps/AppHeader.css";
 @import "cmps/BookList.css";
 @import "cmps/BookPreview.css";
 @import "cmps/BookFilter.css";
-@import "cmps/BookDetails.css";
+
 @import "cmps/LongTxt.css";

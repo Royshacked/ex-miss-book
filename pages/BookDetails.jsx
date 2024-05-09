@@ -1,6 +1,22 @@
-import { LongTxt } from "./LongTxt.jsx"
+const { useParams } = ReactRouter
+const { Link } = ReactRouterDOM
+const { useState, useEffect } = React
 
-export function BookDetails({ book, onClose }) {
+
+import { LongTxt } from "../cmps/LongTxt.jsx"
+import { bookService } from "../services/books.service.js"
+
+export function BookDetails() {
+    const [book, setBook] = useState(null)
+    const params = useParams()
+
+    useEffect(() => {
+        bookService.get(params.bookId)
+            .then(setBook)
+    }, [params.bookId])
+
+    if (!book) return <h3>Loading...</h3>
+    // return <h2>Book Details</h2>
     const { pageCount, publishedDate, listPrice } = book
     const now = new Date().getFullYear()
 
@@ -17,7 +33,6 @@ export function BookDetails({ book, onClose }) {
 
             <p>Author: {book.authors}</p>
             <p>publishedDate: {publishedDate}</p>
-            {/* <p>description: {book.description}</p> */}
             <LongTxt txt={book.description} length={100} />
             <p>pageCount: {pageCount}</p>
             <p>categories: {book.categories}</p>
@@ -28,6 +43,6 @@ export function BookDetails({ book, onClose }) {
         </article>
 
         <img src={book.thumbnail} alt="" />
-        <button onClick={onClose}>X</button>
+        <Link to="/book"><button>X</button></Link>
     </section>
 }
