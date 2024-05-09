@@ -16,7 +16,7 @@ export function BookDetails() {
     }, [params.bookId])
 
     if (!book) return <h3>Loading...</h3>
-    // return <h2>Book Details</h2>
+
     const { pageCount, publishedDate, listPrice } = book
     const now = new Date().getFullYear()
 
@@ -43,6 +43,6 @@ export function BookDetails() {
         </article>
 
         <img src={book.thumbnail} alt="" />
-        <Link to="/book"><button>X</button></Link>
+        <Link to="/book"><button>Back</button></Link>
     </section>
 }

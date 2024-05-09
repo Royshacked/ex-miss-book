@@ -2,13 +2,10 @@ const { useState, useEffect } = React
 
 
 export function LongTxt({ txt, length }) {
-    const [modifiedTxt, setModifiedTxt] = useState(txt)
+    if (txt.length < length) return
     const [isTxtLong, setIsTxtLong] = useState(false)
 
-    useEffect(() => {
-        if (!isTxtLong) setModifiedTxt(prevModifiedTxt => prevModifiedTxt.slice(0, length))
-        else setModifiedTxt(prevModifiedTxt => prevModifiedTxt = txt)
-    }, [isTxtLong])
+    const modifiedTxt = isTxtLong ? txt : txt.substring(0, length)
 
     function toggleTxt() {
         setIsTxtLong(prevIsReadMore => prevIsReadMore = !prevIsReadMore)

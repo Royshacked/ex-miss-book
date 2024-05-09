@@ -1,3 +1,7 @@
+.app-header {
+    border-block-end: 1px solid lightgray;
+}
+
 .active {
     color: rgb(130, 209, 12);
     border-color: rgb(130, 209, 12);

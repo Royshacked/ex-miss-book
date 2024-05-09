@@ -4,8 +4,9 @@
     display: flex;
     justify-content: space-between;
 
-    padding: 1.2em;
-    border: 1px solid black;
+    margin-block-start: 1em;
+    padding: 2em;
+    border: 1px solid lightgray;
 }
 
 .book-details-header {
@@ -13,7 +14,7 @@
     align-items: center;
     gap: 1em;
 
-    padding: 1em;
+    margin-inline-end: 1em;
 }
 
 .book-details-header h2 {
@@ -40,12 +41,14 @@ h3 {
 
 .book-details button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 5px;
 
     border: 1px solid lightgray;
 
     background-color: transparent;
+
+    cursor: pointer;
 }
 
 .red {
