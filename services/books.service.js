@@ -52,8 +52,8 @@ function save(book) {
     }
 }
 
-function getDefaultFilter(filterBy = { txt: '', price: 0 }) {
-    return { title: filterBy.txt, authors: filterBy.txt, category: filterBy.txt, price: filterBy.price }
+function getDefaultFilter(filterBy = { title: '', authors: '', categories: '', price: 0 }) {
+    return { title: filterBy.title, authors: filterBy.authors, categories: filterBy.categories, price: filterBy.price }
 }
 
 // Private functions

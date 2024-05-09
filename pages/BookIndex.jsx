@@ -20,9 +20,7 @@ export function BookIndex() {
 
     function onSetFilterBy(newFilter) {
         setFilterBy(newFilter)
-
     }
-    console.log(filterBy)
 
     return <section className="book-index full">
         <header>

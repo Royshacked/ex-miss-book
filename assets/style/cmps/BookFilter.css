@@ -1,7 +1,40 @@
+.book-filter {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    gap: 10px;
+}
+
+.book-filter-by {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-filter span,
+select {
+    width: 20vw;
+
+    padding: 0.2em;
+    border: 0px;
+    font-size: 1em;
+
+    background-color: white;
+}
+
 .book-filter input {
     width: 20vw;
+
+    padding: 0.2em;
+    border: 0;
+
+    font-size: 1em;
 }
 
 .book-filter input:first-child {
     margin-inline-end: 10px;
+}
+
+.book-filter-inputs {
+    display: flex;
+    flex-direction: column;
 }
