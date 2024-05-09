@@ -16,9 +16,17 @@ _createBooks()
 function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)
         .then(books => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
+            if (filterBy.title) {
+                const regExp = new RegExp(filterBy.title, 'i')
                 books = books.filter(book => regExp.test(book.title))
+            }
+            if (filterBy.authors) {
+                const regExp = new RegExp(filterBy.authors, 'i')
+                books = books.filter(book => regExp.test(book.authors))
+            }
+            if (filterBy.categories) {
+                const regExp = new RegExp(filterBy.categories, 'i')
+                books = books.filter(book => regExp.test(book.categories))
             }
 
             if (filterBy.price) {
@@ -45,7 +53,7 @@ function save(book) {
 }
 
 function getDefaultFilter(filterBy = { txt: '', price: 0 }) {
-    return { txt: filterBy.txt, price: filterBy.price }
+    return { title: filterBy.txt, authors: filterBy.txt, category: filterBy.txt, price: filterBy.price }
 }
 
 // Private functions
