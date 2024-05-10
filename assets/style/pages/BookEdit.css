@@ -10,8 +10,10 @@
     background-color: lightgray;
 }
 
-.edit-form {
+.book-edit div {
     display: flex;
+
+    padding: 1em;
 }
 
 .book-edit form {
@@ -30,8 +32,8 @@
 
 .book-edit input {
     border: 1px solid lightgray;
+    padding: 0.5em;
     color: blue;
-
 }
 
 .book-edit input,
