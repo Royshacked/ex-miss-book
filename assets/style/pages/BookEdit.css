@@ -1,0 +1,44 @@
+.book-edit {
+    border: 1px solid lightgray;
+}
+
+.book-edit h2 {
+    margin-block-end: 1em;
+    padding: 1em;
+    text-align: center;
+
+    background-color: lightgray;
+}
+
+.edit-form {
+    display: flex;
+}
+
+.book-edit form {
+    display: grid;
+    grid-auto-flow: column;
+    flex-grow: 2;
+    gap: 1em;
+    padding: 1em;
+}
+
+.book-edit span {
+    width: max-content;
+    color: lightblue;
+    font-weight: bold;
+}
+
+.book-edit input {
+    border: 1px solid lightgray;
+    color: blue;
+
+}
+
+.book-edit input,
+button {
+    grid-column: 2;
+}
+
+.book-edit button {
+    width: max-content;
+}
