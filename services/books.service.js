@@ -6,6 +6,7 @@ const BOOK_KEY = 'bookDb'
 export const bookService = {
     query,
     get,
+    getEmptyBook,
     remove,
     save,
     getDefaultFilter,
@@ -41,6 +42,27 @@ function get(bookId) {
         book = _setNextPrevBookId(book)
         return book
     })
+}
+
+function getEmptyBook() {
+    const book = {
+        id: '',
+        title: '',
+        subtitle: '',
+        authors: '',
+        publishedDate: 0,
+        description: '',
+        pageCount: 0,
+        categories: '',
+        thumbnail: ``,
+        language: "en",
+        listPrice: {
+            amount: 0,
+            currencyCode: "EUR",
+            isOnSale: Math.random() > 0.7
+        }
+    }
+    return book
 }
 
 function remove(bookId) {
@@ -107,15 +129,8 @@ function _setNextPrevBookId(book) {
     })
 }
 
-// function _createBook() {
-//     const book = {
-//         id: utilService.makeId(5),
-//         title: utilService.makeLorem(1),
-//         listPrice: {
-//             amount: utilService.getRandomIntInclusive(1, 999),
-//             currencyCode: 'EUR',
-//             isOnSale: false,
-//         }
-//     }
+// function _createBook(title, price = 250) {
+//     const book = getEmptyBook(title, price)
+//     book.id = utilService.makeId()
 //     return book
 // }
