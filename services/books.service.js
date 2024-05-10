@@ -37,7 +37,10 @@ function query(filterBy = {}) {
 }
 
 function get(bookId) {
-    return storageService.get(BOOK_KEY, bookId).then(book => book)
+    return storageService.get(BOOK_KEY, bookId).then(book => {
+        book = _setNextPrevBookId(book)
+        return book
+    })
 }
 
 function remove(bookId) {
@@ -55,6 +58,8 @@ function save(book) {
 function getDefaultFilter(filterBy = { title: '', authors: '', categories: '', price: 0 }) {
     return { title: filterBy.title, authors: filterBy.authors, categories: filterBy.categories, price: filterBy.price }
 }
+
+
 
 // Private functions
 
@@ -91,15 +96,26 @@ function _createBooks() {
     return books
 }
 
-function _createBook() {
-    const book = {
-        id: utilService.makeId(5),
-        title: utilService.makeLorem(1),
-        listPrice: {
-            amount: utilService.getRandomIntInclusive(1, 999),
-            currencyCode: 'EUR',
-            isOnSale: false,
-        }
-    }
-    return book
+function _setNextPrevBookId(book) {
+    return storageService.query(BOOK_KEY).then((books) => {
+        const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+        const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+        const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+        book.nextBookId = nextBook.id
+        book.prevBookId = prevBook.id
+        return book
+    })
 }
+
+// function _createBook() {
+//     const book = {
+//         id: utilService.makeId(5),
+//         title: utilService.makeLorem(1),
+//         listPrice: {
+//             amount: utilService.getRandomIntInclusive(1, 999),
+//             currencyCode: 'EUR',
+//             isOnSale: false,
+//         }
+//     }
+//     return book
+// }

@@ -2,9 +2,11 @@ const { useParams } = ReactRouter
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/books.service.js"
+
+
+
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
@@ -14,6 +16,7 @@ export function BookDetails() {
         bookService.get(params.bookId)
             .then(setBook)
     }, [params.bookId])
+
 
     if (!book) return <h3>Loading...</h3>
 
@@ -33,16 +36,21 @@ export function BookDetails() {
 
             <p>Author: {book.authors}</p>
             <p>publishedDate: {publishedDate}</p>
+
             <LongTxt txt={book.description} length={100} />
+
             <p>pageCount: {pageCount}</p>
             <p>categories: {book.categories}</p>
             <p>language: {book.language}</p>
             <p>Price:
                 <span className={(listPrice.amount > 150 && 'red') || (listPrice.amount < 100 && 'green') || ('')}> {listPrice.amount} {listPrice.currencyCode}</span>
             </p>
+            <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
+            <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
         </article>
 
         <img src={book.thumbnail} alt="" />
-        <Link to="/book"><button>Back</button></Link>
+        <Link to="/book"><button className="back-btn">Back</button></Link>
+
     </section>
 }

@@ -39,11 +39,13 @@ h3 {
     max-width: 30%;
 }
 
-.book-details button {
+.book-details .back-btn {
     position: absolute;
     top: 5px;
     right: 5px;
+}
 
+.book-details button {
     border: 1px solid lightgray;
 
     font-weight: bold;
