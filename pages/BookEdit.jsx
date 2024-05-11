@@ -61,7 +61,9 @@ export function BookEdit() {
                 <span>Pages:</span><input onChange={handleChange} type="number" value={book.pageCount} placeholder="Insert book page count..." />
                 <button>Save</button>
             </form>
+
+            <Link to="/book"><button className="back-btn">Back</button></Link>
         </div>
-        <Link to="/book"><button>X</button></Link>
+
     </section>
 }

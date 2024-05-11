@@ -3,7 +3,6 @@
 }
 
 .book-edit h2 {
-    margin-block-end: 1em;
     padding: 1em;
     text-align: center;
 
@@ -11,6 +10,8 @@
 }
 
 .book-edit div {
+    position: relative;
+
     display: flex;
 
     padding: 1em;
@@ -43,4 +44,18 @@ button {
 
 .book-edit button {
     width: max-content;
+
+    border: 1px solid lightgray;
+
+    background-color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.book-edit .back-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

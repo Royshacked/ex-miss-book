@@ -5,6 +5,8 @@ const { Link } = ReactRouterDOM
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/books.service.js"
+import { showSuccessMsg } from "../services/event-bus.service.js"
+import { showErrorMsg } from "../services/event-bus.service.js"
 
 export function BookIndex() {
     const [books, setBooks] = useState([])
@@ -17,7 +19,11 @@ export function BookIndex() {
 
     function removeBook(bookId) {
         bookService.remove(bookId)
-            .then(() => setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId)))
+            .then(() => {
+                setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
+                showSuccessMsg('Book removed successfully')
+            })
+            .catch(() => showErrorMsg('There was a problem'))
     }
 
     function onSetFilterBy(newFilter) {
