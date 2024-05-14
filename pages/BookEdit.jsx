@@ -32,6 +32,8 @@ export function BookEdit() {
                 value = target.checked
                 break;
         }
+
+
         setBook(prevBook => ({ ...prevBook, [prop]: value }))
     }
 
@@ -58,11 +60,10 @@ export function BookEdit() {
             <form onSubmit={onSave}>
                 <span>Title:</span><input onChange={handleChange} type="text" value={book.title} name="title" placeholder="Insert book title..." />
                 <span>Authors:</span><input onChange={handleChange} type="text" value={book.authors} name="authors" placeholder="Insert book authors..." />
-                <span>Description:</span><input onChange={handleChange} type="text" value={book.description} name="description" placeholder="Insert book description..." />
+                <span>PublishDate:</span><input onChange={handleChange} type="number" value={book.publishedDate} name="publishedDate" placeholder="Insert book publishedDate..." />
                 <span>Categories:</span><input onChange={handleChange} type="text" value={book.categories} name="categories" placeholder="Insert book categories..." />
                 <span>Language:</span><input onChange={handleChange} type="text" value={book.language} name="language" placeholder="Insert book language..." />
-                <span>Price:</span><input onChange={handleChange} type="number" value={book.listPrice.amount} placeholder="Insert book tprice..." />
-                <span>Pages:</span><input onChange={handleChange} type="number" value={book.pageCount} placeholder="Insert book page count..." />
+                <span>Price:</span><input onChange={handleChange} type="number" value={book.listPrice} name="listPrice" placeholder="Insert book price..." />
                 <button>Save</button>
             </form>
 

@@ -31,7 +31,7 @@ function query(filterBy = {}) {
             }
 
             if (filterBy.price) {
-                books = books.filter(book => book.listPrice.amount > filterBy.price)
+                books = books.filter(book => book.listPrice > filterBy.price)
             }
             return books
         })
@@ -48,19 +48,17 @@ function getEmptyBook() {
     const book = {
         id: '',
         title: '',
-        subtitle: '',
+        subtitle: utilService.makeLorem(4),
         authors: '',
         publishedDate: 0,
-        description: '',
-        pageCount: 0,
+        description: utilService.makeLorem(20),
+        pageCount: utilService.getRandomIntInclusive(20, 600),
         categories: '',
-        thumbnail: ``,
-        language: "en",
-        listPrice: {
-            amount: 0,
-            currencyCode: "EUR",
-            isOnSale: Math.random() > 0.7
-        }
+        thumbnail: `./imgs/default_book.png`,
+        language: '',
+        listPrice: 0,
+        currencyCode: "EUR",
+        isOnSale: Math.random() > 0.7
     }
     return book
 }
@@ -104,15 +102,14 @@ function _createBooks() {
                 subtitle: utilService.makeLorem(4),
                 authors: [utilService.makeLorem(1)],
                 publishedDate: utilService.getRandomIntInclusive(1950, 2024),
-                description: utilService.makeLorem(20), pageCount: utilService.getRandomIntInclusive(20, 600),
+                description: utilService.makeLorem(20),
+                pageCount: utilService.getRandomIntInclusive(20, 600),
                 categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
                 thumbnail: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
                 language: "en",
-                listPrice: {
-                    amount: utilService.getRandomIntInclusive(80, 500),
-                    currencyCode: "EUR",
-                    isOnSale: Math.random() > 0.7
-                }
+                listPrice: utilService.getRandomIntInclusive(80, 500),
+                currencyCode: "EUR",
+                isOnSale: Math.random() > 0.7
             }
             books.push(book)
         }

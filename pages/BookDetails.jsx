@@ -20,7 +20,7 @@ export function BookDetails() {
 
     if (!book) return <h3>Loading...</h3>
 
-    const { pageCount, publishedDate, listPrice } = book
+    const { pageCount, publishedDate, isOnSale, currencyCode, listPrice } = book
     const now = new Date().getFullYear()
 
     return <section className="book-details">
@@ -29,7 +29,7 @@ export function BookDetails() {
                 <h2>{book.title.charAt(0).toUpperCase() + book.title.slice(1)}</h2>
                 {(pageCount > 500 && <p>Serious Reading</p>) || (pageCount > 200 && <p>Descent Reading</p>) || (<p>Light Reading</p>)}
                 {(now - publishedDate > 10 && <p>Vintage</p>) || (now - publishedDate <= 1 && <p>New</p>)}
-                {(listPrice.isOnSale && <p>On Sale!</p>)}
+                {(isOnSale && <p>On Sale!</p>)}
             </div>
 
             <h3>{book.subtitle}</h3>
@@ -43,7 +43,7 @@ export function BookDetails() {
             <p>categories: {book.categories}</p>
             <p>language: {book.language}</p>
             <p>Price:
-                <span className={(listPrice.amount > 150 && 'red') || (listPrice.amount < 100 && 'green') || ('')}> {listPrice.amount} {listPrice.currencyCode}</span>
+                <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
