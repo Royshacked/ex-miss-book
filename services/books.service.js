@@ -78,7 +78,12 @@ function save(book) {
 }
 
 function getDefaultFilter(filterBy = { title: '', authors: '', categories: '', price: 0 }) {
-    return { title: filterBy.title, authors: filterBy.authors, categories: filterBy.categories, price: filterBy.price }
+    return {
+        title: filterBy.title,
+        authors: filterBy.authors,
+        categories: filterBy.categories,
+        price: filterBy.price
+    }
 }
 
 

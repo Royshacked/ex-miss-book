@@ -5,8 +5,7 @@ const { Link } = ReactRouterDOM
 import { BookFilter } from "../cmps/BookFilter.jsx"
 import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/books.service.js"
-import { showSuccessMsg } from "../services/event-bus.service.js"
-import { showErrorMsg } from "../services/event-bus.service.js"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 export function BookIndex() {
     const [books, setBooks] = useState([])

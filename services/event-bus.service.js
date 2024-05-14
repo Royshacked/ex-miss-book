@@ -5,17 +5,22 @@ function createEventEmitter() {
         // Use this function to subscribe to an event
         on(evName, listener) {
             listenersMap[evName] = (listenersMap[evName]) ? [...listenersMap[evName], listener] : [listener]
+            // console.log(listenersMap)
             return () => {
                 listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
             }
         },
         // Use this function to emit an event
         emit(evName, data) {
+            console.log(listenersMap)
             if (!listenersMap[evName]) return
             listenersMap[evName].forEach(listener => listener(data))
         }
     }
 }
+
+
+
 
 export const eventBusService = createEventEmitter()
 

@@ -19,16 +19,11 @@ export function UserMsg() {
         }
     }, [])
 
-    function onCloseMsg() {
-        setMsg(null)
-    }
-
     console.log(msg)
-    if (!msg) return
+    if (!msg) return null
 
-    return (<section className={"user-msg" + msg.type}>
+    return (<section className={`user-msg ${msg.type}`}>
         <p>{msg.txt}</p>
-        <button onClick={onCloseMsg}>X</button>
+        <button onClick={() => setMsg(null)}>X</button>
     </section>)
 }
-
