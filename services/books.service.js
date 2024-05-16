@@ -10,6 +10,9 @@ export const bookService = {
     remove,
     save,
     getDefaultFilter,
+    getEmptyReview,
+    addReview,
+    removeReview,
 }
 
 _createBooks()
@@ -82,6 +85,26 @@ function getDefaultFilter(filterBy = { title: '', authors: '', categories: '', p
         categories: filterBy.categories,
         price: filterBy.price
     }
+}
+
+function getEmptyReview() {
+    const review = {
+        fullName: '',
+        rating: 0,
+        readAt: 0,
+    }
+    return review
+}
+
+function addReview(book, review) {
+    if (!book.review) book.review = []
+    book.review.push(review)
+
+    save(book)
+}
+
+function removeReview(book) {
+    if (!book.review) return
 }
 
 

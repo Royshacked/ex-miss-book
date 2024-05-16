@@ -46,7 +46,7 @@ export function BookDetails() {
             <p>Price:
                 <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
-            <AddReview />
+            <AddReview book={book} />
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
         </article>
