@@ -31,8 +31,12 @@ export function BookDetails() {
 
     }
 
-    function onRemoveReview(bookId) {
-
+    function onRemoveReview(reviewId) {
+        bookService.removeReview(book.id, reviewId)
+            .then((book) => {
+                setBook(book)
+                showSuccessMsg('Review removed successfully')
+            })
     }
 
     if (!book) return <h3>Loading...</h3>
@@ -63,8 +67,8 @@ export function BookDetails() {
                 <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
 
-            <AddReview bookId={book.id} onSaveReview={onSaveReview} onRemoveReview={onRemoveReview} />
-            <ReviewList reviews={book.reviews} />
+            <AddReview bookId={book.id} onSaveReview={onSaveReview} />
+            <ReviewList reviews={book.reviews} onRemoveReview={onRemoveReview} />
 
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>

@@ -2,7 +2,7 @@ const { useState } = React
 
 import { bookService } from "../services/books.service.js"
 
-export function AddReview({ bookId, onSaveReview, onRemoveReview }) {
+export function AddReview({ bookId, onSaveReview }) {
 
     const [review, setReview] = useState(bookService.getEmptyReview)
 
@@ -30,7 +30,6 @@ export function AddReview({ bookId, onSaveReview, onRemoveReview }) {
             <input onChange={handleChange} type="number" name="rating" value={review.rating} placeholder="rating" min="1" max="5" required />
             <input onChange={handleChange} type="date" name="readAt" value={review.readAt} required />
             <button>Save Review</button>
-
         </form>
 
     </section>

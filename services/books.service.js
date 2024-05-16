@@ -105,8 +105,13 @@ function saveReview(bookId, newReview) {
         })
 }
 
-function removeReview(book) {
-
+function removeReview(bookId, reviewId) {
+    return get(bookId)
+        .then(book => {
+            const reviewIdx = book.reviews.findIndex(review => review.id === reviewId)
+            book.reviews.splice(reviewIdx, 1)
+            return save(book)
+        })
 }
 
 
