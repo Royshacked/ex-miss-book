@@ -2,6 +2,7 @@ const { useParams } = ReactRouter
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
+import { AddReview } from "../cmps/AddReview.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/books.service.js"
 
@@ -45,12 +46,12 @@ export function BookDetails() {
             <p>Price:
                 <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
+            <AddReview />
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
         </article>
 
         <img src={book.thumbnail} alt="" />
         <Link to="/book"><button className="back-btn">Back</button></Link>
-
     </section>
 }
