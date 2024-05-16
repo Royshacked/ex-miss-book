@@ -4,6 +4,7 @@ const { useState, useEffect } = React
 
 import { AddReview } from "../cmps/AddReview.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx"
+import { ReviewList } from "../cmps/ReviewList.jsx"
 import { bookService } from "../services/books.service.js"
 import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
@@ -63,6 +64,7 @@ export function BookDetails() {
             </p>
 
             <AddReview bookId={book.id} onSaveReview={onSaveReview} onRemoveReview={onRemoveReview} />
+            <ReviewList reviews={book.reviews} />
 
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
@@ -70,5 +72,7 @@ export function BookDetails() {
 
         <img src={book.thumbnail} alt="" />
         <Link to="/book"><button className="back-btn">Back</button></Link>
+
+
     </section>
 }
