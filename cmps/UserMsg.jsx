@@ -19,7 +19,6 @@ export function UserMsg() {
         }
     }, [])
 
-    console.log(msg)
     if (!msg) return null
 
     return (<section className={`user-msg ${msg.type}`}>

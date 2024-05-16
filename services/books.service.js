@@ -11,7 +11,7 @@ export const bookService = {
     save,
     getDefaultFilter,
     getEmptyReview,
-    addReview,
+    saveReview,
     removeReview,
 }
 
@@ -88,23 +88,25 @@ function getDefaultFilter(filterBy = { title: '', authors: '', categories: '', p
 }
 
 function getEmptyReview() {
-    const review = {
+    const reviews = {
         fullName: '',
-        rating: 0,
-        readAt: 0,
+        rating: '',
+        readAt: '',
     }
-    return review
+    return reviews
 }
 
-function addReview(book, review) {
-    if (!book.review) book.review = []
-    book.review.push(review)
-
-    save(book)
+function saveReview(bookId, newReview) {
+    return get(bookId)
+        .then(book => {
+            newReview.id = utilService.makeId()
+            book.reviews.push(newReview)
+            return save(book)
+        })
 }
 
 function removeReview(book) {
-    if (!book.review) return
+
 }
 
 
@@ -132,7 +134,8 @@ function _createBooks() {
                 language: "en",
                 listPrice: utilService.getRandomIntInclusive(80, 500),
                 currencyCode: "EUR",
-                isOnSale: Math.random() > 0.7
+                isOnSale: Math.random() > 0.7,
+                reviews: []
             }
             books.push(book)
         }

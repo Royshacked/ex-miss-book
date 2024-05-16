@@ -5,6 +5,7 @@ const { useState, useEffect } = React
 import { AddReview } from "../cmps/AddReview.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { bookService } from "../services/books.service.js"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 
 
@@ -18,6 +19,20 @@ export function BookDetails() {
             .then(setBook)
     }, [params.bookId])
 
+    function onSaveReview(ev, bookId, newReview) {
+        ev.preventDefault()
+
+        bookService.saveReview(bookId, newReview)
+            .then((book) => {
+                setBook(book)
+                showSuccessMsg('Review saved successfully')
+            })
+
+    }
+
+    function onRemoveReview(bookId) {
+
+    }
 
     if (!book) return <h3>Loading...</h3>
 
@@ -46,7 +61,9 @@ export function BookDetails() {
             <p>Price:
                 <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
-            <AddReview book={book} />
+
+            <AddReview bookId={book.id} onSaveReview={onSaveReview} onRemoveReview={onRemoveReview} />
+
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
         </article>
