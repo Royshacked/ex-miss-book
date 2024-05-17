@@ -1,0 +1,14 @@
+.review-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.review-preview p {
+    margin: 0;
+}
+
+.review-preview span {
+    font-weight: bold;
+}

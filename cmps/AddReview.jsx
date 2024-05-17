@@ -1,9 +1,8 @@
-const { useState } = React
+const { useState, useEffect } = React
 
 import { bookService } from "../services/books.service.js"
 
 export function AddReview({ bookId, onSaveReview }) {
-
     const [review, setReview] = useState(bookService.getEmptyReview)
 
     function handleChange({ target }) {

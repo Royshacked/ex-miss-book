@@ -1,8 +1,8 @@
 export function ReviewPreview({ review }) {
     return <article className="review-preview">
-        <span>Name:{review.fullName}</span>
-        <span>Rating:{review.rating}</span>
-        <span>Date:{review.readAt}</span>
+        <p>Name: <span>{review.fullName}</span></p>
+        <p>Rating: <span>{review.rating}</span></p>
+        <p>Date: <span>{review.readAt}</span></p>
     </article>
 
 }

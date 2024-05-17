@@ -1,0 +1,12 @@
+.review-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid lightgray;
+    padding-inline: 1em;
+}
+
+.review-list li button {
+    border: 0;
+}
