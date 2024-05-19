@@ -13,6 +13,7 @@ import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
+    const [isShowRevModal, setIsShowRevModal] = useState(false)
     const params = useParams()
 
     useEffect(() => {
@@ -26,6 +27,7 @@ export function BookDetails() {
         bookService.saveReview(bookId, newReview)
             .then((book) => {
                 setBook(book)
+                onToggleReview()
                 showSuccessMsg('Review saved successfully')
             })
 
@@ -37,6 +39,10 @@ export function BookDetails() {
                 setBook(book)
                 showSuccessMsg('Review removed successfully')
             })
+    }
+
+    function onToggleReview() {
+        setIsShowRevModal(isShowAddRev => !isShowAddRev)
     }
 
     if (!book) return <h3>Loading...</h3>
@@ -67,7 +73,8 @@ export function BookDetails() {
                 <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
 
-            <AddReview bookId={book.id} onSaveReview={onSaveReview} />
+            <button onClick={onToggleReview}>Add Review</button>
+            {isShowRevModal && <AddReview bookId={book.id} onSaveReview={onSaveReview} onToggleReview={onToggleReview} />}
             <ReviewList reviews={book.reviews} onRemoveReview={onRemoveReview} />
 
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
