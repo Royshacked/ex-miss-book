@@ -46,8 +46,11 @@ export function BookEdit() {
             })
     }
 
-    function onAddBook() {
-
+    function onAddBook(book) {
+        bookService.saveGoogleBook(book)
+            .then(() => showSuccessMsg('Book saved successfully'))
+            .catch((err) => showErrorMsg(err))
+            .finally(() => navigate('/book'))
     }
 
     function onSave(ev) {
