@@ -1,3 +1,8 @@
+.review-list {
+    padding: 1em;
+    border: 1px solid lightgray;
+}
+
 .review-list li {
     display: flex;
     align-items: center;

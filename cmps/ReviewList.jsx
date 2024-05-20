@@ -1,6 +1,7 @@
 import { ReviewPreview } from "./ReviewPreview.jsx"
 
 export function ReviewList({ reviews, onRemoveReview }) {
+    if (reviews.length === 0) return
     return <ul className="review-list">
         {reviews.length > 0 && <h3>Reviews</h3>}
 
