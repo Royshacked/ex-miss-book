@@ -1,13 +1,14 @@
 import { bookService } from "../services/books.service.js"
-import { showSuccessMsg } from "../services/event-bus.service.js"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
-const { Link } = ReactRouterDOM
+const { Link, Outlet } = ReactRouterDOM
 
 
 export function BookEdit() {
     const [book, setBook] = useState(bookService.getEmptyBook())
+    const [bookList, setBookList] = useState([])
     const params = useParams()
     const navigate = useNavigate()
 
@@ -32,27 +33,43 @@ export function BookEdit() {
                 value = target.checked
                 break;
         }
-
-
         setBook(prevBook => ({ ...prevBook, [prop]: value }))
+    }
+
+    function onSearchBooks(ev) {
+        ev.preventDefault()
+
+        bookService.getGoogleBook(ev.target[0].value)
+            .then(bookList => {
+                setBookList(bookList)
+                navigate('/book/edit/booklist')
+            })
+    }
+
+    function onAddBook() {
+
     }
 
     function onSave(ev) {
         ev.preventDefault()
 
         bookService.save(book)
-            .then(() => {
-                navigate('/book')
-                showSuccessMsg('Book saved successfully')
-            })
-            .catch((err) => {
-                alert(err)
-                navigate('/book')
-            })
+            .then(() => showSuccessMsg('Book saved successfully'))
+            .catch((err) => showErrorMsg(err))
+            .finally(() => navigate('/book'))
     }
 
     return <section className="book-edit">
         <h2>{params.bookId ? 'Edit book' : 'Add book'}</h2>
+
+        {!params.bookId && <div className="add-google-book">
+            <form onSubmit={onSearchBooks}>
+                <h3>Add Google book</h3>
+                <input type="search" placeholder="Search book" />
+                <button>🔎</button>
+            </form></div>}
+
+        <Outlet context={[bookList, onAddBook]} />
 
         <div className="edit-form">
             <img src={book.thumbnail} alt="" />

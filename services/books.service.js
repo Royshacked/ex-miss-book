@@ -13,6 +13,7 @@ export const bookService = {
     getEmptyReview,
     saveReview,
     removeReview,
+    getGoogleBook,
 }
 
 _createBooks()
@@ -114,7 +115,21 @@ function removeReview(bookId, reviewId) {
         })
 }
 
-
+function getGoogleBook(searchVal) {
+    const bookList = utilService.loadFromStorage("apiDb") || {};
+    if (bookList[searchVal]) {
+        return Promise.resolve(bookList[searchVal]);
+    }
+    axios
+        .get(
+            `https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchVal}`
+        )
+        .then((data) => {
+            bookList[searchVal] = data.data.items;
+            utilService.saveToStorage("apiDb", bookList);
+            return data.data.items;
+        });
+}
 
 // Private functions
 
