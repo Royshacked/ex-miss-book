@@ -1,8 +1,7 @@
-const { useParams } = ReactRouter
-const { Link } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouter
+const { Link, Outlet } = ReactRouterDOM
 const { useState, useEffect } = React
 
-import { AddReview } from "../cmps/AddReview.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx"
 import { ReviewList } from "../cmps/ReviewList.jsx"
 import { bookService } from "../services/books.service.js"
@@ -13,8 +12,8 @@ import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
-    const [isShowRevModal, setIsShowRevModal] = useState(false)
     const params = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         bookService.get(params.bookId)
@@ -27,9 +26,10 @@ export function BookDetails() {
         bookService.saveReview(bookId, newReview)
             .then((book) => {
                 setBook(book)
-                onToggleReview()
                 showSuccessMsg('Review saved successfully')
             })
+            .catch((err) => showErrorMsg(err))
+            .finally(() => navigate(`/book/${bookId}`))
 
     }
 
@@ -39,10 +39,7 @@ export function BookDetails() {
                 setBook(book)
                 showSuccessMsg('Review removed successfully')
             })
-    }
-
-    function onToggleReview() {
-        setIsShowRevModal(isShowAddRev => !isShowAddRev)
+            .catch((err) => showErrorMsg(err))
     }
 
     if (!book) return <h3>Loading...</h3>
@@ -73,9 +70,11 @@ export function BookDetails() {
                 <span className={(listPrice > 150 && 'red') || (listPrice < 100 && 'green') || ('')}> {listPrice} {currencyCode}</span>
             </p>
 
-            <button onClick={onToggleReview}>Add Review</button>
-            {isShowRevModal && <AddReview bookId={book.id} onSaveReview={onSaveReview} onToggleReview={onToggleReview} />}
-            <ReviewList reviews={book.reviews} onRemoveReview={onRemoveReview} />
+            <Link to={`/book/${book.id}/addreview`}><button>Add Review</button></Link>
+
+            <Outlet context={onSaveReview} />
+
+            {book.reviews.length > 0 && <ReviewList reviews={book.reviews} onRemoveReview={onRemoveReview} />}
 
             <Link to={`/book/${book.nextBookId}`}><button className="next-btn">Next book</button></Link>
             <Link to={`/book/${book.prevBookId}`}><button className="prev-btn">Prev book</button></Link>
