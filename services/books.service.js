@@ -13,6 +13,8 @@ export const bookService = {
     getEmptyReview,
     saveReview,
     removeReview,
+    getGoogleBook,
+    saveGoogleBook,
 }
 
 _createBooks()
@@ -114,7 +116,26 @@ function removeReview(bookId, reviewId) {
         })
 }
 
+function getGoogleBook(searchVal) {
+    const bookList = utilService.loadFromStorage("apiDb") || {};
+    if (bookList[searchVal]) {
+        return Promise.resolve(bookList[searchVal]);
+    }
+    axios
+        .get(
+            `https://www.googleapis.com/books/v1/volumes?printType=books&q=${searchVal}`
+        )
+        .then((data) => {
+            bookList[searchVal] = data.data.items;
+            utilService.saveToStorage("apiDb", bookList);
+            return data.data.items;
+        });
+}
 
+function saveGoogleBook(book) {
+    const newBook = _formatGoogleBook(book)
+    return storageService.post(BOOK_KEY, newBook)
+}
 
 // Private functions
 
@@ -147,7 +168,6 @@ function _createBooks() {
         utilService.saveToStorage(BOOK_KEY, books)
     }
 
-
     return books
 }
 
@@ -162,8 +182,22 @@ function _setNextPrevBookId(book) {
     })
 }
 
-// function _createBook(title, price = 250) {
-//     const book = getEmptyBook(title, price)
-//     book.id = utilService.makeId()
-//     return book
-// }
+function _formatGoogleBook(book) {
+    const newBook = {
+        id: book.id,
+        title: book.volumeInfo.title,
+        subtitle: '',
+        authors: book.volumeInfo.authors,
+        publishedDate: book.volumeInfo.publishedDate,
+        description: book.volumeInfo.description,
+        pageCount: book.volumeInfo.pageCount,
+        categories: book.volumeInfo.categories,
+        thumbnail: book.volumeInfo.imageLinks.thumbnail,
+        language: book.volumeInfo.language,
+        listPrice: utilService.getRandomIntInclusive(80, 500),
+        currencyCode: "ILS",
+        isOnSale: Math.random() > 0.7,
+        reviews: []
+    }
+    return newBook
+}
